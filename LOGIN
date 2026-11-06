@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kape't Balay - Login</title>
+  <!-- Google Fonts for Cursive & Serif typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Great+Vibes&family=Playfair+Display:ital,wght@0,600;0,700;1,400&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --dark-brown: #45240f;
+      --btn-brown: #4a2810;
+      --btn-hover: #341b0a;
+      --text-muted: #888888;
+      --border-color: #e0e0e0;
+      --bg-cream: #fbf8f1;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background-color: #d1cfc7;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    /* Card Container */
+    .login-card {
+      display: flex;
+      width: 100%;
+      max-width: 980px;
+      min-height: 580px;
+      background: #ffffff;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+    }
+
+    /* Left Banner Side */
+    .banner-side {
+      flex: 1.1;
+      position: relative;
+      /* Background image of the cafe */
+      background: url('https://images.unsplash.com/photo-1554118811-1e0d58224f24?q=80&w=1200&auto=format&fit=crop') center/cover no-repeat;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 50px 30px;
+      text-align: center;
+      color: #ffffff;
+    }
+
+    /* Soft overlay for text legibility */
+    .banner-side::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: linear-gradient(180deg, rgba(30, 45, 70, 0.45) 0%, rgba(0, 0, 0, 0.25) 100%);
+      z-index: 1;
+    }
+
+    .banner-content {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* Logo Styling */
+    .logo-container {
+      margin-bottom: 25px;
+    }
+
+    .logo-kapet {
+      font-family: 'Great Vibes', 'Caveat', cursive;
+      font-size: 3.5rem;
+      line-height: 1;
+      font-weight: 500;
+      letter-spacing: 1px;
+      color: #ffffff;
+      text-shadow: 1px 2px 4px rgba(0,0,0,0.3);
+    }
+
+    .logo-balay {
+      font-family: 'Poppins', sans-serif;
+      font-size: 2.8rem;
+      font-weight: 800;
+      letter-spacing: 2px;
+      line-height: 0.9;
+      margin-left: 20px;
+      color: #ffffff;
+      text-transform: uppercase;
+      text-shadow: 1px 2px 4px rgba(0,0,0,0.3);
+    }
+
+    .logo-sub {
+      font-size: 0.7rem;
+      letter-spacing: 3.5px;
+      font-weight: 500;
+      margin-top: 10px;
+      text-transform: uppercase;
+      opacity: 0.95;
+    }
+
+    /* Quote Tagline */
+    .banner-quote {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 1.25rem;
+      color: #ffffff;
+      margin-top: 25px;
+      max-width: 280px;
+      line-height: 1.4;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.4);
+    }
+
+    /* Right Form Side */
+    .form-side {
+      flex: 1;
+      background-color: var(--bg-cream);
+      padding: 60px 45px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+    }
+
+    /* Botanical Line Art Accents */
+    .botanical-bg-top {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      width: 130px;
+      opacity: 0.18;
+      pointer-events: none;
+    }
+
+    .botanical-bg-bottom {
+      position: absolute;
+      bottom: 10px;
+      right: 15px;
+      width: 140px;
+      opacity: 0.18;
+      pointer-events: none;
+    }
+
+    .form-header {
+      text-align: center;
+      margin-bottom: 35px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .form-header h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.1rem;
+      font-weight: 700;
+      color: #1a1a1a;
+      margin-bottom: 6px;
+    }
+
+    .form-header p {
+      font-size: 0.9rem;
+      color: #555555;
+    }
+
+    /* Inputs */
+    .form-group {
+      margin-bottom: 18px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .input-wrapper {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
+    .input-icon {
+      position: absolute;
+      left: 14px;
+      width: 18px;
+      height: 18px;
+      stroke: var(--text-muted);
+      fill: none;
+    }
+
+    .toggle-eye {
+      position: absolute;
+      right: 14px;
+      width: 18px;
+      height: 18px;
+      stroke: var(--text-muted);
+      fill: none;
+      cursor: pointer;
+    }
+
+    .input-wrapper input {
+      width: 100%;
+      padding: 13px 40px 13px 42px;
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      font-size: 0.9rem;
+      background: #ffffff;
+      outline: none;
+      transition: border-color 0.2s ease;
+    }
+
+    .input-wrapper input:focus {
+      border-color: var(--dark-brown);
+    }
+
+    .input-wrapper input::placeholder {
+      color: #aaa;
+    }
+
+    /* Options (Remember me & Forgot Password) */
+    .form-options {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 30px;
+      font-size: 0.82rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .remember-me {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: #333;
+      cursor: pointer;
+    }
+
+    .remember-me input {
+      accent-color: var(--dark-brown);
+      width: 16px;
+      height: 16px;
+      cursor: pointer;
+    }
+
+    .forgot-pass {
+      color: #333333;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .forgot-pass:hover {
+      text-decoration: underline;
+    }
+
+    /* Button */
+    .btn-login {
+      width: 100%;
+      padding: 13px;
+      background-color: var(--btn-brown);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+      position: relative;
+      z-index: 2;
+    }
+
+    .btn-login:hover {
+      background-color: var(--btn-hover);
+    }
+
+    /* Responsive Breakdown */
+    @media (max-width: 768px) {
+      .login-card {
+        flex-direction: column;
+        max-width: 450px;
+      }
+      .banner-side {
+        padding: 40px 20px;
+      }
+      .form-side {
+        padding: 40px 25px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="login-card">
+    
+    <!-- Left Banner -->
+    <div class="banner-side">
+      <div class="banner-content">
+        
+        <!-- Logo -->
+        <div class="logo-container">
+          <div class="logo-kapet">Kape't</div>
+          <div class="logo-balay">BALAY</div>
+          <div class="logo-sub">GOOD COFFEE, WARM SPACES</div>
+        </div>
+
+        <!-- Tagline -->
+        <div class="banner-quote">
+          “More than coffee,<br>a place for everyone.”
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Right Form -->
+    <div class="form-side">
+      
+      <!-- Top Botanical Leaf Accent SVG -->
+      <svg class="botanical-bg-top" viewBox="0 0 100 100" fill="none" stroke="#45240f" stroke-width="1.5">
+        <path d="M10 80 Q 50 20 90 10 M50 38 Q 30 25 20 30 M50 38 Q 65 25 75 35 M65 24 Q 45 10 40 18 M78 17 Q 60 5 62 12" />
+      </svg>
+
+      <div class="form-header">
+        <h2>Welcome Back!</h2>
+        <p>Sign in to your account</p>
+      </div>
+
+      <form id="loginForm">
+        <!-- Username Field -->
+        <div class="form-group">
+          <div class="input-wrapper">
+            <svg class="input-icon" viewBox="0 0 24 24">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <circle cx="12" cy="7" r="4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <input type="text" placeholder="Username" required>
+          </div>
+        </div>
+
+        <!-- Password Field -->
+        <div class="form-group">
+          <div class="input-wrapper">
+            <svg class="input-icon" viewBox="0 0 24 24">
+              <rect x="3" y="11" width="18" height="11" rx="2" ry="2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M7 11V7a5 5 0 0 1 10 0v4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <input type="password" id="passwordInput" placeholder="Password" required>
+            <!-- Eye slash toggle icon -->
+            <svg class="toggle-eye" id="toggleEye" onclick="togglePassword()" viewBox="0 0 24 24">
+              <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <line x1="1" y1="1" x2="23" y2="23" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </div>
+        </div>
+
+        <!-- Options -->
+        <div class="form-options">
+          <label class="remember-me">
+            <input type="checkbox" checked>
+            <span>Remember me</span>
+          </label>
+          <a href="#" class="forgot-pass">Forgot password?</a>
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit" class="btn-login">Login</button>
+      </form>
+
+      <!-- Bottom Botanical Leaf Accent SVG -->
+      <svg class="botanical-bg-bottom" viewBox="0 0 100 100" fill="none" stroke="#45240f" stroke-width="1.5">
+        <path d="M20 90 Q 70 50 85 10 M45 65 Q 25 55 30 45 M62 45 Q 45 35 50 25 M72 28 Q 55 20 60 10" />
+      </svg>
+
+    </div>
+  </div>
+
+  <script>
+    function togglePassword() {
+      const passwordInput = document.getElementById('passwordInput');
+      if (passwordInput.type === 'password') {
+        passwordInput.type = 'text';
+      } else {
+        passwordInput.type = 'password';
+      }
+    }
+  </script>
+</body>
+</html>
